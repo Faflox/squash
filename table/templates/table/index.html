@@ -1,46 +1,48 @@
 {% extends "table/base.html" %}
 
 {% block content %}
-  <div class="action-table">
-    <form action="{% url "table:start_tournament" %}" method="POST">
+  <div class="navbar">
+    <div class='nav-element first'>
+      <form action="{% url "table:start_tournament" %}" method="POST">
         {% csrf_token %}
         <button type="submit">Rozpocznij turniej!</button>
       </form>
-      <br>
+    </div>
+    <div class='nav-element'>
       <a href="{% url "table:add_player" %}">Dodaj gracza</a>
+    </div>
   </div>
 
-  <div class="players-table-container">
+  <div class="navbar">
     <table class="players-table">
-        <thead>
-            <tr>
-                <th>Gracz</th>
-                <th>Punkty</th>
-                <th>Gry</th>
-                <th>Zakwalifikowany</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for player in players %}
-            <tr>
-                <td>{{ player.name }}</td>
-                <td>{{ player.points }}</td>
-                <td>{{ player.games }}</td>
-                {% if player.qualified  == False %}
-                <td>Nie</td>
-                {% else %}
-                <td>Tak</td>
-                {% endif %}
-                
-            </tr>
-            {% endfor %}
-        </tbody>
+      <thead>
+        <tr>
+          <th>Gracz</th>
+          <th>Punkty</th>
+          <th>Gry</th>
+          <th>Zakwalifikowany</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for player in players %}
+        <tr class='player-tab'>
+          <td>{{ player.name }}</td>
+          <td>{{ player.points }}</td>
+          <td>{{ player.games }}</td>
+          {% if player.qualified  == False %}
+          <td>Nie</td>
+          {% else %}
+          <td>Tak</td>
+          {% endif %}
+        </tr>
+        {% endfor %}
+      </tbody>
     </table>
   </div>
 
-  <div class="action-table">
+  <div class="navbar">
     <form action="{% url "table:reset_tournament" %}" method="POST">
-        {% csrf_token %}
+      {% csrf_token %}
         <button type='submit'>Zresetuj turniej (ostrożnie)</button>
     </form>
   </div>

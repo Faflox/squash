@@ -4,31 +4,40 @@
 <head>
   <link rel="stylesheet" type="text/css" 
   href="{% static 'table/css/styles.css' %}">
-  <link rel="stylesheet" type="text/css" 
-  href="{% static 'table/css/matches.css'%}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,
+  wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..
+700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" 
+rel="stylesheet">
   {% block head %}{% endblock head %}
 </head>
 <body>
   <div class='navbar'>
-    {% if user.is_authenticated %}
-      <p>Zalogowano</p>
+    <div class='nav-element first'>
+      {% if user.is_authenticated %}
+        <p>Zalogowano</p>
+      {% endif %}
+    </div>
+    <div class='nav-element'>
+      {% if user.is_authenticated %}
       <form action="{% url "accounts:logout" %}" method='post'>
         {% csrf_token %}
         <button name='submit'>Wyloguj się</button>
       </form>
-    
-    {% else %}
-      <a href="{% url "accounts:login" %}">Zaloguj się</a>
-    {% endif %}
-
-    <!--Przeskakiwanie pomiedzy stronami-->
-    <div class="bg-orange">
+      {% else %}
+        <a href="{% url "accounts:login" %}">Zaloguj się</a>
+      {% endif %}
+    </div>
+    <div class='nav-element'>
       <a href="{% url "table:index" %}">Zawodnicy</a>
     </div>
-    <div class="bg-green">
+    <div class='nav-element'>
       <a href="{% url "table:matches" %}">Mecze</a>
     </div>
-    
   </div>
 
 {% block content %}{% endblock content %}
