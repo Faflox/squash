@@ -12,12 +12,10 @@
   <div class='navbar'>
     {% if user.is_authenticated %}
       <p>Zalogowano</p>
-    <div class="bg-green">
       <form action="{% url "accounts:logout" %}" method='post'>
         {% csrf_token %}
         <button name='submit'>Wyloguj się</button>
       </form>
-    </div>
     
     {% else %}
       <a href="{% url "accounts:login" %}">Zaloguj się</a>

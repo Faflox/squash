@@ -9,7 +9,25 @@
     max-width: 500px;
     margin: 0 auto;
 }
-b
+
+button{
+    background-color: #23d64a;
+    border: 0px solid #000000;
+    padding: 12px;
+    margin: 12px;
+    border-radius: 24px;
+}
+
+form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input{
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
 
 .bg-orange{
     background-color: #F57F00;

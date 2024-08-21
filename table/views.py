@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, HttpResponse
-from .forms import createPlayer
+from .forms import createPlayer, updateMatch
 from .models import Player, Match
 import random
 
@@ -29,6 +29,18 @@ def matches(request):
     matches = Match.objects.order_by('winner')
     return render(request, 'table/matches.html', context={'matches': matches})
 
+def match_score(request, match_id):
+    match = Match.objects.get(id=match_id)
+    if request.method != 'POST':
+        form = updateMatch(instance=match)
+    else:
+        form = updateMatch(request.POST, instance=match)
+        if form.is_valid():
+            form.save()
+            return  redirect('table:matches')
+    return render(request, 'table/match.html', context={'match': match,
+                                                        'form': form})
+
 def start_tournament(request):
     if request.method == 'POST':
         players = list(Player.objects.all())
@@ -42,7 +54,7 @@ def start_tournament(request):
         
         # Ensure each player plays exactly 4 matches
         matches = []
-        num_matches = 4  # Each player should have exactly 4 matches
+        num_matches = 3  # Each player should have exactly 4 matches
 
         # Create a dictionary to track the number of matches each player has
         player_match_counts = {player: 0 for player in players}
@@ -77,3 +89,10 @@ def start_tournament(request):
         Match.objects.bulk_create(matches)
     
     return redirect('table:matches')
+
+def reset_tournament(request):
+    if request.method == "POST":
+        Player.objects.all().delete()
+        Match.objects.all().delete()
+        return redirect('table:index')
+    return redirect('table:index')

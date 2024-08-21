@@ -22,7 +22,7 @@ class Match(models.Model):
                                on_delete=models.CASCADE, null=True, blank=True)
     
     def __str__(self) -> str:
-        return f"{self.player1} vs {self.player2}"
+        return f"{self.player1} {self.score1} vs {self.score2} {self.player2}"
     
     #Zapewnia, że zwyciezca jest jeden z graczy
     def clean(self):  

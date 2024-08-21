@@ -37,5 +37,12 @@
         </tbody>
     </table>
   </div>
+
+  <div class="action-table">
+    <form action="{% url "table:reset_tournament" %}" method="POST">
+        {% csrf_token %}
+        <button type='submit'>Zresetuj turniej (ostrożnie)</button>
+    </form>
+  </div>
 {% endblock content %}
 

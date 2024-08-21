@@ -1,0 +1,18 @@
+{% extends "table/base.html" %}
+
+{% block content %}
+  <div class='matches-list'>
+    <div class='players'>
+        <div>
+            <div>{{ match.player1 }}</div>
+            <div>VS</div>
+            <div >{{ match.player2 }}</div>
+        </div>
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Update Score</button>
+      </form>
+  </div>
+{% endblock content %}
