@@ -2,13 +2,13 @@
 
 {% block content %}
   <div class="navbar">
-    <div class='nav-element first'>
+    <div class='nav-element first bckgr'>
       <form action="{% url "table:start_tournament" %}" method="POST">
         {% csrf_token %}
         <button type="submit">Rozpocznij turniej!</button>
       </form>
     </div>
-    <div class='nav-element'>
+    <div class='nav-element bckgr'>
       <a href="{% url "table:add_player" %}">Dodaj gracza</a>
     </div>
   </div>
@@ -40,7 +40,7 @@
     </table>
   </div>
 
-  <div class="navbar">
+  <div class="navbar red">
     <form action="{% url "table:reset_tournament" %}" method="POST">
       {% csrf_token %}
         <button type='submit'>Zresetuj turniej (ostrożnie)</button>

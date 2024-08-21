@@ -12,13 +12,24 @@ button{
     font-family: 'Space Grotesk', 'Space Mono', Arial, Helvetica, sans-serif;
     background-color: rgb(255, 255, 255);
     border: none;
-    font-size:20px
+    font-size:20px;
+    display: inline-flex;
+    align-items: center; /* Vertically centers the text */
+    justify-content: center;
+    height: 66px;
+    width: 100%;
 }
+
 
 a{
     text-decoration: none;
     font-size: 20px;
+    text-align: justify;
+    height: 66px;
+    min-width: 188px;
 }
+
+
 
 .navbar{
     display: flex;
@@ -47,7 +58,7 @@ a{
     border: none;
 }
 
-.nav-element:hover{
+.bckgr:hover{
     background-color: bisque;
 }
 
@@ -77,4 +88,11 @@ th{
 td{
     width: 25%;
     text-align: center;
+}
+
+.red{
+    background-color: rgb(239, 156, 169);
+}
+.red:hover{
+    background-color: red;
 }

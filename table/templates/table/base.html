@@ -17,25 +17,25 @@ rel="stylesheet">
 </head>
 <body>
   <div class='navbar'>
-    <div class='nav-element first'>
+    <div class='nav-element first bckgr'>
       {% if user.is_authenticated %}
         <p>Zalogowano</p>
       {% endif %}
     </div>
-    <div class='nav-element'>
+    <div class='nav-element bckgr'>
       {% if user.is_authenticated %}
       <form action="{% url "accounts:logout" %}" method='post'>
         {% csrf_token %}
-        <button name='submit'>Wyloguj się</button>
+        <button name='submit' class='bckgr'>Wyloguj się</button>
       </form>
       {% else %}
         <a href="{% url "accounts:login" %}">Zaloguj się</a>
       {% endif %}
     </div>
-    <div class='nav-element'>
+    <div class='nav-element bckgr'>
       <a href="{% url "table:index" %}">Zawodnicy</a>
     </div>
-    <div class='nav-element'>
+    <div class='nav-element bckgr'>
       <a href="{% url "table:matches" %}">Mecze</a>
     </div>
   </div>
