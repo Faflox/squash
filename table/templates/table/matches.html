@@ -1,0 +1,35 @@
+{% extends "table/base.html" %}
+
+{% block head %}
+
+{% endblock head %}
+
+{% block content %}
+<div class="matches-container">
+    <div class="matches-list">
+        {% for match in matches %}
+        <div class="match">
+            <div class="players">
+                <div class="item item-1">{{ match.player1 }}</div>
+                <div class="item item-2">VS</div>
+                <div class="item item-3">{{ match.player2 }}</div>
+            </div>
+            <div class='score'>
+                <span>{{ match.score1 }}</span>
+                <span> - </span>
+                <span>{{ match.score2 }}</span>
+            </div>
+            <div class='winner'>
+                {% if match.winner %}
+                <span>Zwycięzca: {{ match.winner }}</span>
+                {% else %}
+                <span>Zwycięzca: </span>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}
+
+

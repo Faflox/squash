@@ -1,0 +1,11 @@
+{% extends "table/base.html" %}
+
+{% block content %}
+<p>Dodaj gracza:</p>
+<form action="{% url "table:add_player" %}" method='POST'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button name='submit'>Dodaj gracza</button>
+</form>
+{% endblock content %}
+

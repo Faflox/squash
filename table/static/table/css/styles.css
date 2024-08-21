@@ -1,0 +1,91 @@
+.navbar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    gap: 8px;
+    border-radius: 24px;
+    border: 4px solid #000000;
+    max-width: 500px;
+    margin: 0 auto;
+}
+b
+
+.bg-orange{
+    background-color: #F57F00;
+    font-weight: bold;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 12px;
+    padding-right: 12px;
+    border-radius: 8px;
+}
+
+a{
+    text-decoration: none;
+    color: #000000;
+}
+
+.bg-green{
+    background-color: #d9edd4;
+    font-weight: bold;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 12px;
+    padding-right: 12px;
+    border-radius: 8px;
+}
+
+.action-table{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    gap: 20px;
+    border-radius: 24px;
+    border: 4px solid #000000;
+    max-width: 300px;
+    margin: 0 auto;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.players-table-container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.players-table {
+    border-radius: 24px; /* Rounds the corners of the table */
+    border-spacing: 0; /* Removes spacing between cells */
+    width: 80%; /* Adjust the width as needed */
+    max-width: 800px; /* Optional: sets a maximum width */
+    margin: 0 auto; /* Center-aligns the table */
+    font-family: Arial, sans-serif; /* Optional: for a clean font */
+    border: 4px solid #000000;
+    overflow: hidden; /* Ensures that the rounded corners are respected */
+}
+
+.players-table th, .players-table td {
+    border: 1px solid #353535;
+    padding: 8px;
+    text-align: center;
+}
+
+.players-table th {
+    background-color: #F57F00;
+    font-weight: bold;
+}
+
+
+.players-table tr:nth-child(even) {
+    background-color: #d9edd4;
+}
+
+/* Hover effect */
+.players-table tr:hover {
+    background-color: #f1f1f1;
+}

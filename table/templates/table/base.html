@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" 
+  href="{% static 'table/css/styles.css' %}">
+  <link rel="stylesheet" type="text/css" 
+  href="{% static 'table/css/matches.css'%}">
+  {% block head %}{% endblock head %}
+</head>
+<body>
+  <div class='navbar'>
+    {% if user.is_authenticated %}
+      <p>Zalogowano</p>
+    <div class="bg-green">
+      <form action="{% url "accounts:logout" %}" method='post'>
+        {% csrf_token %}
+        <button name='submit'>Wyloguj się</button>
+      </form>
+    </div>
+    
+    {% else %}
+      <a href="{% url "accounts:login" %}">Zaloguj się</a>
+    {% endif %}
+
+    <!--Przeskakiwanie pomiedzy stronami-->
+    <div class="bg-orange">
+      <a href="{% url "table:index" %}">Zawodnicy</a>
+    </div>
+    <div class="bg-green">
+      <a href="{% url "table:matches" %}">Mecze</a>
+    </div>
+    
+  </div>
+
+{% block content %}{% endblock content %}
+</body>
+</html>
+

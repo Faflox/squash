@@ -1,0 +1,41 @@
+{% extends "table/base.html" %}
+
+{% block content %}
+  <div class="action-table">
+    <form action="{% url "table:start_tournament" %}" method="POST">
+        {% csrf_token %}
+        <button type="submit">Rozpocznij turniej!</button>
+      </form>
+      <br>
+      <a href="{% url "table:add_player" %}">Dodaj gracza</a>
+  </div>
+
+  <div class="players-table-container">
+    <table class="players-table">
+        <thead>
+            <tr>
+                <th>Gracz</th>
+                <th>Punkty</th>
+                <th>Gry</th>
+                <th>Zakwalifikowany</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for player in players %}
+            <tr>
+                <td>{{ player.name }}</td>
+                <td>{{ player.points }}</td>
+                <td>{{ player.games }}</td>
+                {% if player.qualified  == False %}
+                <td>Nie</td>
+                {% else %}
+                <td>Tak</td>
+                {% endif %}
+                
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+  </div>
+{% endblock content %}
+
