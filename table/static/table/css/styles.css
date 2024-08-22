@@ -52,6 +52,8 @@ a{
     flex:1;
     border-left: 1px solid rgb(73, 73, 73);
     text-align: center;
+    justify-content: center;
+    align-items: center;
 }
 
 .first{
@@ -73,10 +75,15 @@ tr{
     flex: 1;
     align-items: center;
     justify-content: center;
+    border-bottom: 1px solid rgb(73, 73, 73);
+    padding-top: 12px;
+    padding-bottom: 12px;
 }
 
 th{
     width: 25%;
+    margin-top: 8px;
+    margin-bottom: 8px;
 }
 
 .player-tab{
@@ -90,9 +97,40 @@ td{
     text-align: center;
 }
 
+.green{
+    background-color: rgb(216, 233, 222);
+}
+
+.green:hover{
+    cursor: pointer;
+}
+
 .red{
     background-color: rgb(239, 156, 169);
 }
 .red:hover{
     background-color: red;
+    cursor: pointer;
+}
+
+.pelne{
+    width: 100%;
+    height: 100%;
+    min-height: 80px;
+}
+
+.odstep{
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+input{
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-left: 8px;
+    border: 1px solid rgb(73, 73, 73);
+    font-size: 20px;
+    font-family: 'Space Grotesk', 'Space Mono', Arial, Helvetica, sans-serif;
 }

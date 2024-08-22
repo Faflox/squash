@@ -6,7 +6,7 @@
     <form action="{% url "table:add_player" %}" method='POST'>
         {% csrf_token %}
         {{ form.as_p }}
-        <button name='submit'><b>Dodaj gracza</b></button>
+        <button name='submit' class='red odstep'><b>Dodaj gracza</b></button>
     </form>
 </div>
 {% endblock content %}
