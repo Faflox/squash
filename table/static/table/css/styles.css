@@ -6,6 +6,7 @@ body{
     font-family: 'Space Grotesk', 'Space Mono', Arial, Helvetica, sans-serif;
     font-size: 20px;
     margin-top: 20px;
+    background-color: rgb(236, 236, 236);
 }
 
 button{
@@ -133,4 +134,53 @@ input{
     border: 1px solid rgb(73, 73, 73);
     font-size: 20px;
     font-family: 'Space Grotesk', 'Space Mono', Arial, Helvetica, sans-serif;
+}
+
+.matches{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.match{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar.matches a.match {
+    display: block;          /* Make the <a> element a block-level element */
+    width: 100%; 
+    min-height: 160px;
+    padding-bottom: 8px;
+    margin-top: 4px;
+    border: 1px solid rgb(73, 73, 73);
+    color: black;
+
+}
+
+.navbar.matches .score, 
+.navbar.matches .winner {
+    display: flex;           /* Use flexbox to arrange children horizontally */
+    justify-content:space-around; /* Distribute space between items */
+    padding: 10px;           /* Add some padding */
+    background-color: rgb(245, 245, 245);
+}
+
+
+.navbar.matches .score span {
+    margin: 0 0px;           /* Add some spacing between the score numbers */
+}
+
+
+.players{
+    background-color: rgb(214, 248, 237);
+    display: flex;           /* Use flexbox to arrange children horizontally */
+    justify-content:space-around;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    
 }

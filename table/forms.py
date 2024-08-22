@@ -14,12 +14,4 @@ class createPlayer(forms.ModelForm):
 class updateMatch(forms.ModelForm):
     class Meta:
         model = Match
-        fields = ['score1', 'score2', 'winner']
-        
-    def __init__(self, *args, **kwargs):
-        match = kwargs.get('instance')
-        super(updateMatch, self).__init__(*args, **kwargs)
-        if match:
-            self.fields['winner'].queryset = Player.objects.filter(id__in=[
-                match.player1.id, match.player2.id
-            ])
+        fields = ['score1', 'score2']

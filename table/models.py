@@ -7,6 +7,7 @@ class Player(models.Model):
     points = models.SmallIntegerField(default=0)
     games = models.SmallIntegerField(default=0)
     qualified = models.BooleanField(default=False)
+    point_balance = models.IntegerField(default=0)
     
     def __str__(self) -> str:
         return self.name
@@ -36,11 +37,22 @@ class Match(models.Model):
         
     def update_player_stats(self):
         players = [self.player1, self.player2]
+        #balans punktów
+        self.player1.point_balance += (self.score1 - self.score2)
+        self.player2.point_balance += (self.score2 - self.score1)
+        #zwycięzca
+        if self.score1 > self.score2:
+            self.winner = self.player1
+            self.player1.points += 1
+        else:
+            self.winner = self.player2
+            self.player2.points += 1
+        #zapis
         for player in players:
-            player.games +=1
-            if player == self.winner:
-                player.points += 1
+            player.games += 1
             player.save()
+        self.save()
+            
     
 class Placement(models.Model):
     player = models.ForeignKey(Player, on_delete=models.CASCADE)
@@ -48,3 +60,8 @@ class Placement(models.Model):
     
     def __str__(self) -> str:
         return f"{self.player} zajął {self.place}"
+    
+    def create_placement(self):
+        top_players = Player.objects.order_by('-points', '-point_balance')[:4]
+                    
+    

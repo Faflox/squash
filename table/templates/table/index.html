@@ -20,7 +20,8 @@
           <th>Gracz</th>
           <th>Punkty</th>
           <th>Gry</th>
-          <th>Zakwalifikowany</th>
+          <th>Bilans</th>
+          <th>Awans</th>
         </tr>
       </thead>
       <tbody>
@@ -29,6 +30,7 @@
           <td>{{ player.name }}</td>
           <td>{{ player.points }}</td>
           <td>{{ player.games }}</td>
+          <td>{{ player.point_balance }}</td>
           {% if player.qualified  == False %}
           <td>Nie</td>
           {% else %}
