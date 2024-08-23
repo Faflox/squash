@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import createPlayer, updateMatch
-from .models import Player, Match
+from .models import Player, Match, FinalsMatch, Set
 
 # Create your views here.
 def index(request):
@@ -74,11 +74,42 @@ def generate_schedule(players):
             (players[8], players[2]), (players[8], players[4])
         ]
     return matches
-@login_required
 
+@login_required
 def reset_tournament(request):
     if request.method == "POST":
         Player.objects.all().delete()
         Match.objects.all().delete()
         return redirect('table:index')
     return redirect('table:index')
+
+
+def finals(request):
+    finals = FinalsMatch.objects.all()
+    return render(request, 'table/finals.html', context={'finals': finals})
+        
+@login_required     
+def create_finals(request):
+    FinalsMatch.objects.all().delete()
+    Set.objects.all().delete()
+    top_players = Player.objects.order_by('-points', '-point_balance')[:4]
+    matchups = [
+        (top_players[0], top_players[3]),
+        (top_players[1], top_players[2])
+    ]
+    
+    for player1, player2 in matchups:
+        FinalsMatch.objects.create(player1=player1, 
+                                    player2=player2, 
+                                    level='Półfinał')
+    
+    semis = FinalsMatch.objects.all()
+    for semi in semis:
+        for set in range(3):
+            Set.objects.create(match=semi,
+                               set_num=(set+1))
+    
+    return redirect('table:finals')
+
+def change_finals_score(request, match_id):
+    return render(request, 'table/finals_match.html')

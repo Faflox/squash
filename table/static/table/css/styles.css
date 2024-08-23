@@ -184,3 +184,11 @@ input{
     padding-right: 10px;
     
 }
+
+.semis{
+    display: flex;
+    justify-content: center;
+    gap: 25%;
+    width: 100%;
+    max-width: 880px;
+}

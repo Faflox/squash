@@ -17,11 +17,6 @@ rel="stylesheet">
 </head>
 <body>
   <div class='navbar'>
-    <div class='nav-element first bckgr'>
-      {% if user.is_authenticated %}
-        <p>Zalogowano</p>
-      {% endif %}
-    </div>
     <div class='nav-element bckgr'>
       {% if user.is_authenticated %}
       <form action="{% url "accounts:logout" %}" method='post'>
@@ -37,6 +32,9 @@ rel="stylesheet">
     </div>
     <div class='nav-element bckgr'>
       <a href="{% url "table:matches" %}">Mecze</a>
+    </div>
+    <div class='nav-element'>
+      <a href="{% url "table:finals" %}">Finały</a>
     </div>
   </div>
 

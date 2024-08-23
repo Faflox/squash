@@ -1,7 +1,24 @@
 {% extends "table/base.html" %}
 
 {% block content %}
+<div class='navbar'>
+    <a href="{% url "table:create_finals" %}">
+        Stwórz drabinkę finałową
+    </a>
+</div>
 <div class='navbar matches'>
-    
+  <div class='semis'>
+    {% for final in finals %}
+    <div class='match-content'>
+      <h1>{{ final.level }}</h1>
+      <p>{{ final.player1}} vs {{final.player2 }}</p>   
+      {% for set in final.set_set.all %}
+        <p>{{ set.score1}} - {{ set.score2 }}</p>
+      {% endfor %}
+      <h3>Zwycięzca: {{ final.winner }}</h3>
+    </div>
+    {% endfor %}
+  </div>
+
 </div>
 {% endblock content %}
