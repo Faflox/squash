@@ -24,7 +24,7 @@ rel="stylesheet">
         <button name='submit' class='bckgr pelne'>Wyloguj się</button>
       </form>
       {% else %}
-        <a href="{% url "accounts:login" %}">Zaloguj się</a>
+        <a href="{% url "accounts:login" %}" class='bckgr pelne'>Zaloguj się</a>
       {% endif %}
     </div>
     <a href="{% url "table:index" %}" class='nav-element bckgr nav-button'>
