@@ -13,7 +13,7 @@ web:
     '/':
       passthru: true
     '/static':
-      root: 'static'
+      root: 'staticfiles'
       expires: 1h
       allow: true
 
