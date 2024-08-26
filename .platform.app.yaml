@@ -8,7 +8,7 @@ web:
   upstream:
     socket_family: unix
   commands:
-    start: "gunicorn -w 4 -b unix:$SOCKET squash.wsgi:application"
+    start: "gunicorn -w 4 -b unix:$SOCKET squash_tournament.wsgi:application"
   locations:
     '/':
       passthru: true
