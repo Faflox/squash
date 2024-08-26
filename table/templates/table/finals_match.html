@@ -11,7 +11,22 @@
     </div>
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ formset.management_form }}
+        <table>
+          <tr>
+            <th>Set Number</th>
+            <th>{{ match.player1 }}</th>
+            <th>{{ match.player2 }}</th>
+          </tr>
+          {% for form in formset %}
+            <tr>
+              <td>Set {{ form.instance.set_num }}</td>
+              <td>{{ form.score1 }}</td>
+              <td>{{ form.score2 }}</td>
+            </tr>
+          {{ form.id }}
+          {% endfor %}
+        </table>
         <button type="submit">Zatwierdź wynik</button>
       </form>
   </div>

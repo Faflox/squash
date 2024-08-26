@@ -11,15 +11,15 @@ body{
 
 button{
     font-family: 'Space Grotesk', 'Space Mono', Arial, Helvetica, sans-serif;
-    background-color: rgb(255, 255, 255);
     border: none;
     font-size:20px;
     display: inline-flex;
-    align-items: center; /* Vertically centers the text */
+    align-items: center;
     justify-content: center;
     height: 66px;
     width: 100%;
 }
+
 
 
 a{
@@ -28,6 +28,9 @@ a{
     text-align: justify;
     height: 66px;
     min-width: 188px;
+    justify-content: center;
+    align-items: center;
+    color: black;
 }
 
 
@@ -47,6 +50,7 @@ a{
 }
 
 .nav-element{
+    display: flex;
     height: 66px;
     width: 25%;
     min-width: 200px;
@@ -110,7 +114,7 @@ td{
     background-color: rgb(239, 156, 169);
 }
 .red:hover{
-    background-color: red;
+    background-color: rgb(255, 79, 79);
     cursor: pointer;
 }
 
@@ -191,4 +195,10 @@ input{
     gap: 25%;
     width: 100%;
     max-width: 880px;
+    min-height: 300px;
+}
+
+.zwyciezca{
+    color: rgb(205, 176, 8);
+    display: inline;
 }

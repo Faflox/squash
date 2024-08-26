@@ -17,18 +17,18 @@ rel="stylesheet">
 </head>
 <body>
   <div class='navbar'>
-    <div class='nav-element bckgr'>
+    <div class='nav-element bckgr first nav-button'>
       {% if user.is_authenticated %}
-      <form action="{% url "accounts:logout" %}" method='post'>
+      <form action="{% url "accounts:logout" %}" method='post' class='nav-element bckgr nav-button first'>
         {% csrf_token %}
-        <button name='submit' class='bckgr'>Wyloguj się</button>
+        <button name='submit' class='bckgr pelne'>Wyloguj się</button>
       </form>
       {% else %}
         <a href="{% url "accounts:login" %}">Zaloguj się</a>
       {% endif %}
     </div>
-    <a href="{% url "table:index" %}">
-      <div class='nav-element bckgr'><p>Zawodnicy</p></div>
+    <a href="{% url "table:index" %}" class='nav-element bckgr nav-button'>
+      <div class='nav-a'>Zawodnicy</div>
     </a>
     <a href="{% url "table:matches" %}">
       <div class='nav-element bckgr'>Mecze</div>

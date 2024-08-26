@@ -1,24 +1,38 @@
 {% extends "table/base.html" %}
 
 {% block content %}
-<div class='navbar'>
-    <a href="{% url "table:create_finals" %}">
-        Stwórz drabinkę finałową
-    </a>
-</div>
+<a href="{% url "table:create_finals" %}" class='navbar red'>
+  <div>Stwórz drabinkę finałową</div>
+</a>
 <div class='navbar matches'>
   <div class='semis'>
-    {% for final in finals %}
-    <div class='match-content'>
-      <h1>{{ final.level }}</h1>
-      <p>{{ final.player1}} vs {{final.player2 }}</p>   
-      {% for set in final.set_set.all %}
-        <p>{{ set.score1}} - {{ set.score2 }}</p>
-      {% endfor %}
-      <h3>Zwycięzca: {{ final.winner }}</h3>
-    </div>
+    {% for semifinal in semifinals %}
+    <a href="{% url "table:change_finals_score" semifinal.id %}">
+      <div class='match-content'>
+        <h1>Półfinał</h1>
+        <p>{{ semifinal.player1}} vs {{ semifinal.player2 }}</p>   
+        {% for set in semifinal.sets_set.all %}
+          <p>{{ set.score1}} - {{ set.score2 }}</p>
+        {% endfor %}
+        <h3>Zwycięzca: {{ semifinal.winner }}</h3>
+      </div>
+    </a>
     {% endfor %}
   </div>
-
+  <div class='final'>
+    {% if great_final.id %}
+    <a href="{% url "table:change_finals_score" great_final.id%}">
+    {% else %}
+    <a href='#'>
+    {% endif %}
+      {% if semifinals %}
+      <div class='final-match-display'>
+        <h1 class='zwyciezca'>Finał</h1>
+        <p>{{ semi_winner_1 }} vs {{ semi_winner_2 }}</p>
+        <h3>Zwycięzca: {{ great_final.winner }}</h3>
+      </div>
+      {% endif %}
+    </a>
+  </div>
 </div>
 {% endblock content %}

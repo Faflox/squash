@@ -82,7 +82,8 @@ class FinalsMatch(models.Model):
         
     
 class Set(models.Model):
-    match = models.ForeignKey(FinalsMatch, on_delete=models.CASCADE)
+    match = models.ForeignKey(FinalsMatch, on_delete=models.CASCADE, 
+                              related_name='sets')
     score1 = models.IntegerField(default=0)
     score2 = models.IntegerField(default=0)
     set_num = models.IntegerField(default=0)
@@ -99,11 +100,11 @@ class Set(models.Model):
         if (self.score1 + self.score2) != 0:
             if self.score1 > self.score2:
                 self.set_winner = self.match.player1
-            else:
+            elif self.score1 < self.score2:
                 self.set_winner = self.match.player2 
     
-    def  save(self, *args, **kwargs):
-        self.determine_set_winner(self)
+    def save(self, *args, **kwargs):
+        self.determine_set_winner()
         super().save(*args, **kwargs)
         self.match.update_winner()
         
