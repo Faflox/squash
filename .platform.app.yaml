@@ -32,6 +32,7 @@ hooks:
     # Collect static files if necessary for the build phase
     # Uncomment if you need static files collected during build
     # python manage.py collectstatic --noinput
+    
   deploy: |
     # Apply database migrations
     python manage.py migrate
