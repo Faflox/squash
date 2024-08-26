@@ -27,15 +27,15 @@ rel="stylesheet">
         <a href="{% url "accounts:login" %}">Zaloguj się</a>
       {% endif %}
     </div>
-    <div class='nav-element bckgr pelne'>
-      <a href="{% url "table:index" %}">Zawodnicy</a>
-    </div>
-    <div class='nav-element bckgr'>
-      <a href="{% url "table:matches" %}">Mecze</a>
-    </div>
-    <div class='nav-element'>
-      <a href="{% url "table:finals" %}">Finały</a>
-    </div>
+    <a href="{% url "table:index" %}">
+      <div class='nav-element bckgr'><p>Zawodnicy</p></div>
+    </a>
+    <a href="{% url "table:matches" %}">
+      <div class='nav-element bckgr'>Mecze</div>
+    </a>
+    <a href="{% url "table:finals" %}">
+      <div class='nav-element bckgr'>Finały</div>
+    </a> 
   </div>
 
 {% block content %}{% endblock content %}
