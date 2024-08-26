@@ -85,17 +85,19 @@ def reset_tournament(request):
 
 def finals(request):
     semifinals = FinalsMatch.objects.filter(level='Półfinał')
+    great_final = FinalsMatch.objects.filter(level='Finał')
+    semi_winner_1 = None
+    semi_winner_2 = None
     if semifinals.exists():
         semi_winner_1 = semifinals[0].winner
         semi_winner_2 = semifinals[1].winner
-    great_final = FinalsMatch.objects.filter(level='Finał')
-    if semifinals[1].winner and semifinals[0].winner and not great_final.exists():
-        great_final = FinalsMatch.objects.create(player1=semi_winner_1,
-                                                 player2=semi_winner_2,
-                                                 level='Finał')
-        for i in range(3):
-            Set.objects.create(match=great_final,
-                               set_num=(i+1))
+        if semifinals[1].winner and semifinals[0].winner and not great_final.exists():
+            great_final = FinalsMatch.objects.create(player1=semi_winner_1,
+                                                    player2=semi_winner_2,
+                                                    level='Finał')
+            for i in range(3):
+                Set.objects.create(match=great_final,
+                                set_num=(i+1))
     great_final = FinalsMatch.objects.filter(level='Finał').first()
     context={'semifinals': semifinals,
              'semi_winner_1': semi_winner_1,
