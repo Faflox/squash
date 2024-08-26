@@ -77,8 +77,7 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -90,6 +89,9 @@ LOGIN_URL = 'accounts:login'
 if 'PLATFORM_ENVIRONMENT' in os.environ:
     from platformshconfig import Config
     config = Config()
+    
+    if config.appDir:
+        STATIC_ROOT = Path(config.appDir) / 'static'
     if config.is_valid_platform():
         ALLOWED_HOSTS.append('.platformsh.site')
 
