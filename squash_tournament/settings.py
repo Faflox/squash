@@ -137,8 +137,6 @@ config = Config()
 if config.is_valid_platform():
     ALLOWED_HOSTS.append('.platformsh.site')
     
-    if config.appDir:
-        STATIC_ROOT = Path(config.appDir) / 'static'
     if config.projectEntropy:
         SECRET_KEY = config.credentials('database')
         
