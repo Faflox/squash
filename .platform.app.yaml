@@ -29,14 +29,11 @@ hooks:
     pip install --upgrade pip
     pip install -r requirements.txt
     pip install -r requirements_remote.txt
-    # Collect static files if necessary for the build phase
-    # Uncomment if you need static files collected during build
-    # python manage.py collectstatic --noinput
-    
-  deploy: |
-    # Apply database migrations
-    python manage.py migrate
-    # Collect static files
+
+    mkdir -p staticfiles
     python manage.py collectstatic --noinput
+  deploy: |
+    python manage.py migrate
+
 
     
