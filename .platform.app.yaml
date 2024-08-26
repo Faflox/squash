@@ -2,7 +2,7 @@ name: 'squash'
 type: 'python:3.12'
 
 relationships:
-    database: 'db:postgresql'
+  database: 'db:postgresql'
 
 web:
   upstream:
@@ -24,14 +24,14 @@ mounts:
     source: local
     source_path: logs
 
-  hooks:
-    build: |
-      pip install --upgrade pip
-      pip install -r requirements.txt
-      pip install -r requirements_remote.html
+hooks:
+  build: |
+    pip install --upgrade pip
+    pip install -r requirements.txt
+    pip install -r requirements_remote.html
 
-      mkdir logs
-      python manage.py collectstatic
-      rm -rf logs
-    deploy: |
-      python manage.py migrate
+    mkdir logs
+    python manage.py collectstatic
+    rm -rf logs
+  deploy: |
+    python manage.py migrate
