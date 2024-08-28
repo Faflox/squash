@@ -20,7 +20,7 @@ def add_player(request):
     return render(request, 'table/add_player.html', context={'form': form})
 
 def matches(request):
-    matches = Match.objects.order_by(-id)
+    matches = Match.objects.order_by('-id')
     return render(request, 'table/matches.html', context={'matches': matches})
 
 @login_required
