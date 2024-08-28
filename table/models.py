@@ -14,7 +14,7 @@ class Player(models.Model):
     
     @classmethod
     def reset_players(cls):
-        cls.objects.update(points=0, games=0)
+        cls.objects.update(points=0, games=0, qualified=False)
        
 class Match(models.Model):
     player1 = models.ForeignKey(Player, related_name='matches_as_player1',
