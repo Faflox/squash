@@ -109,6 +109,7 @@ def finals(request):
 def create_finals(request):
     FinalsMatch.objects.all().delete()
     top_players = Player.objects.order_by('-points', '-point_balance')[:4]
+    Player.objects.filter(id__in=top_players).update(qualified=True)
     matchups = [
         (top_players[0], top_players[3]),
         (top_players[1], top_players[2])
