@@ -51,7 +51,24 @@ def start_tournament(request):
     return redirect('table:matches')
 
 def generate_schedule(players):
-    if len(players) == 8:
+    if len(players) == 7:
+        matches = [
+            (players[0], players[1]), (players[2], players[3]), 
+            (players[4], players[5]),  # Runda 1
+            (players[0], players[2]), (players[1], players[4]), 
+            (players[3], players[6]),  # Runda 2
+            (players[0], players[3]), (players[1], players[5]), 
+            (players[2], players[6]),  # Runda 3
+            (players[0], players[4]), (players[1], players[6]), 
+            (players[3], players[5]),  # Runda 4
+            (players[0], players[5]), (players[1], players[3]), 
+            (players[2], players[4]),  # Runda 5
+            (players[0], players[6]), (players[2], players[5]), 
+            (players[4], players[6]),  # Runda 6
+            (players[1], players[2]), (players[3], players[4]), 
+            (players[5], players[6])   # Runda 7
+        ]
+    elif len(players) == 8:
         matches = [
             (players[0], players[1]), (players[2], players[3]), 
             (players[4], players[5]), (players[6], players[7]),
@@ -82,27 +99,16 @@ def reset_tournament(request):
         return redirect('table:index')
     return redirect('table:index')
 
-
 def finals(request):
-    semifinals = FinalsMatch.objects.filter(level='Półfinał')
-    great_final = FinalsMatch.objects.filter(level='Finał')
-    semi_winner_1 = None
-    semi_winner_2 = None
-    if semifinals.exists():
-        semi_winner_1 = semifinals[0].winner
-        semi_winner_2 = semifinals[1].winner
-        if semifinals[1].winner and semifinals[0].winner and not great_final.exists():
-            great_final = FinalsMatch.objects.create(player1=semi_winner_1,
-                                                    player2=semi_winner_2,
-                                                    level='Finał')
-            for i in range(3):
-                Set.objects.create(match=great_final,
-                                set_num=(i+1))
-    great_final = FinalsMatch.objects.filter(level='Finał').first()
-    context={'semifinals': semifinals,
-             'semi_winner_1': semi_winner_1,
-             'semi_winner_2': semi_winner_2,
-             'great_final': great_final}
+    try:
+        great_final = FinalsMatch.objects.get(level='1')
+        miejce_3 = FinalsMatch.objects.get(level='3')
+    except FinalsMatch.DoesNotExist:
+        great_final = None
+        miejce_3 = None
+    context={
+            'great_final': great_final,
+            'miejsce_3': miejce_3,}
     return render(request, 'table/finals.html', context)
         
 @login_required     
@@ -110,17 +116,18 @@ def create_finals(request):
     FinalsMatch.objects.all().delete()
     top_players = Player.objects.order_by('-points', '-point_balance')[:4]
     Player.objects.filter(id__in=top_players).update(qualified=True)
-    matchups = [
-        (top_players[0], top_players[3]),
-        (top_players[1], top_players[2])
-    ]
+
+    great_final = FinalsMatch.objects.create(player1=top_players[0],
+                                             player2=top_players[1],
+                                             level="1")
+    miejsce_3 = FinalsMatch.objects.create(player1=top_players[2],
+                                           player2=top_players[3],
+                                           level="3")
     
-    for player1, player2 in matchups:
-        semi = FinalsMatch.objects.create(player1=player1, 
-                                    player2=player2, 
-                                    level='Półfinał')
+    finals = [great_final, miejsce_3]
+    for final in finals:
         for i in range(3):
-            Set.objects.create(match=semi,
+            Set.objects.create(match=final,
                                 set_num=(i+1))
     
     return redirect('table:finals')

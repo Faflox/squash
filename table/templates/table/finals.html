@@ -5,33 +5,30 @@
   <div>Stwórz drabinkę finałową</div>
 </a>
 <div class='navbar matches'>
-  <div class='semis'>
-    {% for semifinal in semifinals %}
-    <a href="{% url "table:change_finals_score" semifinal.id %}">
-      <div class='match-content'>
-        <h1>Półfinał</h1>
-        <p>{{ semifinal.player1}} vs {{ semifinal.player2 }}</p>   
-        {% for set in semifinal.sets_set.all %}
-          <p>{{ set.score1}} - {{ set.score2 }}</p>
-        {% endfor %}
-        <h3>Zwycięzca: {{ semifinal.winner }}</h3>
-      </div>
-    </a>
-    {% endfor %}
-  </div>
   <div class='final'>
     {% if great_final.id %}
     <a href="{% url "table:change_finals_score" great_final.id%}">
     {% else %}
     <a href='#'>
     {% endif %}
-      {% if semifinals %}
       <div class='final-match-display'>
         <h1 class='zwyciezca'>Finał</h1>
-        <p>{{ semi_winner_1 }} vs {{ semi_winner_2 }}</p>
+        <p>{{ great_final.player1 }} vs {{ great_final.player2 }}</p>
         <h3>Zwycięzca: {{ great_final.winner }}</h3>
       </div>
-      {% endif %}
+    </a>
+  </div>
+  <div class='final trzecie'>
+    {% if miejsce_3.id %}
+    <a href="{% url "table:change_finals_score" miejsce_3.id%}">
+    {% else %}
+    <a href='#'>
+    {% endif %}
+      <div class='final-match-display'>
+        <h1 class='zwyciezca'>Trzecie miejsce</h1>
+        <p>{{ miejsce_3.player1 }} vs {{ miejsce_3.player2 }}</p>
+        <h3>Zwycięzca: {{ miejsce_3.winner }}</h3>
+      </div>
     </a>
   </div>
 </div>
